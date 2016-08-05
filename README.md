@@ -1,9 +1,9 @@
-docker-cakephp
+docker-cakephp-example
 ==============
 
 Just a little Docker POC in order to have a complete stack for running CakePHP into Docker containers using docker-compose tool.
 
-# Installation
+# Installation [WIP]
 
 First, clone this repository:
 
@@ -22,12 +22,6 @@ $ docker-compose up
 ```
 
 You are done, you can visit your CakePHP application on the following URL: `http://localhost`
-
-_Note :_ you can rebuild all Docker images by running:
-
-```bash
-$ docker-compose build
-```
 
 ## Database Migrations and Seeds
 
@@ -52,7 +46,7 @@ $ docker-compose up
 
 # How it works?
 
-Here are the `docker-compose` built images:
+Here are the `docker-compose` images:
 
 * `db`: This is the MySQL database container (can be changed to postgresql or whatever in `docker-compose.yml` file),
 * `php`: This is the PHP-FPM container including the application volume mounted on,
