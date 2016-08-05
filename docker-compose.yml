@@ -1,0 +1,35 @@
+version: '2'
+services:
+    db:
+        image: mysql:5.7
+        ports:
+            - "3306:3306"
+        environment:
+          MYSQL_ROOT_PASSWORD: 'cakephp'
+          MYSQL_DATABASE: 'cakephp'
+    php:
+        image: travisrowland/docker-cakephp-php-fpm:master
+        expose:
+            - "9000"
+        volumes:
+            - ./cakephp:/www
+            - ./logs/cakephp:/www/app/logs
+        links:
+            - db
+        environment:
+          DB_USERNAME: 'root'
+          DB_PASSWORD: 'cakephp'
+          DB_DATABASE: 'cakephp'
+          DB_SEED: 'DatabaseSeed'
+          REPO: 'https://github.com/Dynamictivity/cakephp-bookmarker.git'
+          REPO_HOST: 'github.com'
+    nginx:
+        image: travisrowland/docker-cakephp-nginx:master
+        ports:
+            - "80:80"
+        links:
+            - php
+        volumes_from:
+            - php
+        volumes:
+            - ./logs/nginx/:/var/log/nginx
