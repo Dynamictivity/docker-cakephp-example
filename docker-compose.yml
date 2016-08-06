@@ -8,7 +8,7 @@ services:
           MYSQL_ROOT_PASSWORD: 'cakephp'
           MYSQL_DATABASE: 'cakephp'
     php:
-        image: travisrowland/docker-cakephp-php-fpm:master
+        image: travisrowland/dockercakephp_php:latest
         expose:
             - "9000"
         volumes:
@@ -24,7 +24,7 @@ services:
           REPO: 'https://github.com/Dynamictivity/cakephp-bookmarker.git'
           REPO_HOST: 'github.com'
     nginx:
-        image: travisrowland/docker-cakephp-nginx:master
+        image: travisrowland/dockercakephp_nginx
         ports:
             - "80:80"
         links:
