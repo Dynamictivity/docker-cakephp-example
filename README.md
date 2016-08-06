@@ -3,7 +3,9 @@ docker-cakephp-example
 
 Just a little Docker POC in order to have a complete stack for running CakePHP into Docker containers using docker-compose tool.
 
-# Installation [WIP]
+This example takes it a step further by hosting the source-code in a standalone container, to make infrastructure upgrades seamless. You can find the source-code for the example application here: https://github.com/Dynamictivity/cakephp-bookmarker
+
+# Installation
 
 First, clone this repository:
 
@@ -11,11 +13,7 @@ First, clone this repository:
 $ git clone git@github.com:Dynamictivity/docker-cakephp.git
 ```
 
-Next, edit the `docker-compose.yml` file and change the `REPO:` value to the URL of your application's GIT repository.
-
-Finally (required only for SSH GIT repositories), edit `php-fpm/id_rsa` file and put your GIT deployment (private key) in there so that the docker container can access your private GIT repository. If you are using GIT via SSH you'll also want to change the `REPO_HOST:` value to the FQDN of your GIT server host, that way the host key can be automatically accepted.
-
-Then, run:
+Change into the working directory that you just cloned and run:
 
 ```bash
 $ docker-compose up
@@ -58,17 +56,11 @@ This results in the following running containers:
 > $ docker-compose ps
         Name                      Command               State              Ports
         -------------------------------------------------------------------------------------------
-        docker_db_1            /entrypoint.sh mysqld            Up      0.0.0.0:3306->3306/tcp
-        docker_nginx_1         nginx                            Up      443/tcp, 0.0.0.0:80->80/tcp
-        docker_php_1           php5-fpm -F                      Up      9000/tcp
+        cakephp-bookmarker_1   /sbin/my_init                 Up
+        db_1                   docker-entrypoint.sh mysqld   Up      0.0.0.0:3306->3306/tcp
+        nginx_1                nginx                         Up      443/tcp, 0.0.0.0:80->80/tcp
+        php_1                  /init.sh                      Up      9000/tcp
 ```
-
-# Read logs
-
-You can access Nginx and CakePHP application logs in the following directories on your host machine:
-
-* `logs/nginx`
-* `logs/cakephp`
 
 # Code license
 

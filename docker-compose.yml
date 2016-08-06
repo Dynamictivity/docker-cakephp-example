@@ -11,25 +11,30 @@ services:
         image: travisrowland/dockercakephp_php:latest
         expose:
             - "9000"
+        volumes_from:
+            - cakephp-bookmarker
         volumes:
-            - ./cakephp:/www
-            - ./logs/cakephp:/www/app/logs
+            - /www/app/logs
         links:
             - db
+            - cakephp-bookmarker
         environment:
           DB_USERNAME: 'root'
           DB_PASSWORD: 'cakephp'
           DB_DATABASE: 'cakephp'
           DB_SEED: 'DatabaseSeed'
-          REPO: 'https://github.com/Dynamictivity/cakephp-bookmarker.git'
-          REPO_HOST: 'github.com'
+    cakephp-bookmarker:
+        image: travisrowland/cakephp-bookmarker:latest
+        volumes:
+            - /www
     nginx:
         image: travisrowland/dockercakephp_nginx
         ports:
             - "80:80"
         links:
             - php
+            - cakephp-bookmarker
         volumes_from:
-            - php
+            - cakephp-bookmarker
         volumes:
             - ./logs/nginx/:/var/log/nginx
