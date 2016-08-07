@@ -51,6 +51,19 @@ cakephp:
     image: travisrowland/cakephp-bookmarker:latest
 ```
 
+## E-Mail Configuration
+Change the following variables in `docker-compose.yml` to configure email in your application:
+
+```
+EMAIL_HOST: 'localhost'
+EMAIL_PORT: '25'
+EMAIL_TIMEOUT: '30'
+EMAIL_USERNAME: 'user'
+EMAIL_PASSWORD: 'secret'
+EMAIL_TLS:
+EMAIL_TRANSPORT_DEFAULT_URL:
+```
+
 ## Database Migrations and Seeds
 
 When the container spins up it runs the following 2 commands (aside from `composer install`):
@@ -74,11 +87,12 @@ $ docker-compose up
 
 # How it works?
 
-Here are the `docker-compose` images:
+Here are the `docker-compose` running containers:
 
-* `db`: This is the MySQL database container (can be changed to postgresql or whatever in `docker-compose.yml` file),
-* `php`: This is the PHP-FPM container including the application volume mounted on,
-* `nginx`: This is the Nginx webserver container in which php volumes are mounted too.
+* `cakephp`: This is the stand-alone application source-code container which contains your CakePHP application
+* `db`: This is the MySQL database container including the application volume mounted from cakephp
+* `nginx`: This is the Nginx webserver container in which cakephp volumes are mounted to
+* `php`: This is the PHP-FPM container including the application volume mounted from cakephp
 
 This results in the following running containers:
 
@@ -86,14 +100,11 @@ This results in the following running containers:
 > $ docker-compose ps
         Name                      Command               State              Ports
         -------------------------------------------------------------------------------------------
-        cakephp-bookmarker_1   /sbin/my_init                 Up
+        cakephp_1              /sbin/my_init                 Up
         db_1                   docker-entrypoint.sh mysqld   Up      0.0.0.0:3306->3306/tcp
         nginx_1                nginx                         Up      443/tcp, 0.0.0.0:80->80/tcp
         php_1                  /init.sh                      Up      9000/tcp
 ```
-
-# TODO
-- Email Configuration via environment variables
 
 # Code license
 
