@@ -12,18 +12,18 @@ services:
         expose:
             - "9000"
         volumes_from:
-            - cakephp-bookmarker
+            - cakephp
         volumes:
             - /www/app/logs
         links:
             - db
-            - cakephp-bookmarker
+            - cakephp
         environment:
           DB_USERNAME: 'root'
           DB_PASSWORD: 'cakephp'
           DB_DATABASE: 'cakephp'
           DB_SEED: 'DatabaseSeed'
-    cakephp-bookmarker:
+    cakephp:
         image: travisrowland/cakephp-bookmarker:latest
         volumes:
             - /www
@@ -33,8 +33,8 @@ services:
             - "80:80"
         links:
             - php
-            - cakephp-bookmarker
+            - cakephp
         volumes_from:
-            - cakephp-bookmarker
+            - cakephp
         volumes:
             - ./logs/nginx/:/var/log/nginx

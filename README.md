@@ -44,11 +44,11 @@ ADD . /www
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ```
 
-Once you have built your CakePHP docker image and uploaded it to a registry, simply change the php image portion of the `docker-compose.yml` -- replace `travisrowland/dockercakephp_php:latest` below, with your custom docker image as follows:
+Once you have built your CakePHP docker image and uploaded it to a registry, simply change the php image portion of the `docker-compose.yml` -- replace `cakephp-bookmarker` below, with your custom docker image as follows:
 
 ```
-php:
-    image: travisrowland/dockercakephp_php:latest
+cakephp:
+    image: travisrowland/cakephp-bookmarker:latest
 ```
 
 ## Database Migrations and Seeds
