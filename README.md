@@ -13,7 +13,7 @@ This example takes it a step further by hosting the source-code in a standalone 
 First, clone this repository:
 
 ```bash
-$ git clone git@github.com:Dynamictivity/docker-cakephp.git
+$ git clone git@github.com:Dynamictivity/docker-cakephp-example.git
 ```
 
 Change into the working directory that you just cloned and run:
@@ -65,7 +65,7 @@ You can specify the database seed file inside of `docker-compose.yml` by changin
 # Vagrant
 You can also use `vagrant` for testing by typing the following command from the work tree: `vagrant up`
 
-Run the following commands:
+Once you are logged into the Vagrant box run the following commands:
 
 ```bash
 $ cd /vagrant
@@ -91,6 +91,9 @@ This results in the following running containers:
         nginx_1                nginx                         Up      443/tcp, 0.0.0.0:80->80/tcp
         php_1                  /init.sh                      Up      9000/tcp
 ```
+
+# TODO
+- Email Configuration via environment variables
 
 # Code license
 
