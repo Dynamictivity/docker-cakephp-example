@@ -5,6 +5,9 @@ Just a little Docker POC in order to have a complete stack for running CakePHP i
 
 This example takes it a step further by hosting the source-code in a standalone container, to make infrastructure upgrades seamless. You can find the source-code for the example application here: https://github.com/Dynamictivity/cakephp-bookmarker
 
+### Compatibility
+- CakePHP3
+
 # Installation
 
 First, clone this repository:
@@ -20,6 +23,33 @@ $ docker-compose up
 ```
 
 You are done, you can visit your CakePHP application on the following URL: `http://localhost`
+
+# Custom Application Configuration
+
+To use your own custom application you just need to build your CakePHP application into a standalone docker image by creating a `Dockerfile` inside of the root of your CakePHP application. We recommend `phusion/baseimage` -- example dockerfile below:
+
+```
+# Use phusion/baseimage as base image. To make your builds reproducible, make
+# sure you lock down to a specific version, not to `latest`!
+# See https://github.com/phusion/baseimage-docker/blob/master/Changelog.md for
+# a list of version numbers.
+FROM phusion/baseimage:0.9.19
+
+# Use baseimage-docker's init system.
+CMD ["/sbin/my_init"]
+
+ADD . /www
+
+# Clean up APT when done.
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+```
+
+Once you have built your CakePHP docker image and uploaded it to a registry, simply change the php image portion of the `docker-compose.yml` -- replace `travisrowland/dockercakephp_php:latest` below, with your custom docker image as follows:
+
+```
+php:
+    image: travisrowland/dockercakephp_php:latest
+```
 
 ## Database Migrations and Seeds
 
