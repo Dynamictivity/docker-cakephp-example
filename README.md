@@ -61,7 +61,6 @@ EMAIL_TIMEOUT: '30'
 EMAIL_USERNAME: 'user'
 EMAIL_PASSWORD: 'secret'
 EMAIL_TLS:
-EMAIL_TRANSPORT_DEFAULT_URL:
 ```
 
 ## Database Migrations and Seeds
