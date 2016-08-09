@@ -29,7 +29,6 @@ services:
           EMAIL_USERNAME: 'user'
           EMAIL_PASSWORD: 'secret'
           EMAIL_TLS: 'false'
-          EMAIL_TRANSPORT_DEFAULT_URL:
     cakephp:
         image: travisrowland/cakephp-bookmarker:latest
         volumes:
