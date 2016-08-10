@@ -1,7 +1,7 @@
 docker-cakephp-example
 ==============
 
-Just a little Docker POC in order to have a complete stack for running CakePHP into Docker containers using docker-compose tool.
+Just a little Docker POC in order to have a complete stack for running CakePHP into Docker containers using docker-compose tool. It is recommended to utilize this stack with database sessions, so your sessions can be persisted across all running instances of your application.
 
 This example takes it a step further by hosting the source-code in a standalone container, to make infrastructure upgrades seamless. You can find the source-code for the example application here: https://github.com/Dynamictivity/cakephp-bookmarker
 
