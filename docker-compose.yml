@@ -34,7 +34,7 @@ services:
         volumes:
             - /www
     nginx:
-        image: travisrowland/dockercakephp_nginx
+        image: dynamictivity/dockercakephp_nginx
         ports:
             - "80:80"
         links:
