@@ -51,7 +51,7 @@ Once you have built your CakePHP docker image and uploaded it to a registry, sim
 
 ```
 cakephp:
-    image: travisrowland/cakephp-bookmarker:latest
+    image: dynamictivity/cakephp-bookmarker:latest
 ```
 
 ## E-Mail Configuration
