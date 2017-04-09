@@ -6,7 +6,7 @@ services:
           MYSQL_ROOT_PASSWORD: 'cakephp'
           MYSQL_DATABASE: 'cakephp'
     php:
-        image: travisrowland/dockercakephp_php:latest
+        image: dynamictivity/dockercakephp_php:latest
         expose:
             - "9000"
         volumes_from:
@@ -30,7 +30,7 @@ services:
           EMAIL_PASSWORD: 'secret'
           EMAIL_TLS: 'false'
     cakephp:
-        image: travisrowland/cakephp-bookmarker:latest
+        image: dynamictivity/cakephp-bookmarker:latest
         volumes:
             - /www
     nginx:
